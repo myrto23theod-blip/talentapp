@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent App - Προφίλ Σκηνοθέτη</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      background: #111;
+      color: #fff;
+    }
+    .header {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-bottom: 2px solid rgba(201,168,76,0.3);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo { font-size: 14px; color: #c9a84c; letter-spacing: 3px; }
+    .header-title { font-size: 18px; color: #fff; }
+    .btn-logout {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #c9a84c;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: 'Georgia', serif;
+    }
+    .profile-hero {
+      background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+      url('images/theater.jpg') center/cover;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #c9a84c;
+      margin: 0 auto 15px;
+      background: rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    .profile-name { font-size: 26px; color: #fff; margin-bottom: 5px; }
+    .profile-username { font-size: 14px; color: #c9a84c; margin-bottom: 15px; }
+    .btn-edit {
+      background: linear-gradient(135deg, #c9a84c, #e0c97f);
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .btn-search {
+      background: transparent;
+      color: #c9a84c;
+      border: 2px solid #c9a84c;
+      padding: 10px 30px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+      margin-left: 10px;
+    }
+    .content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .section {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-size: 13px;
+      color: #c9a84c;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding-bottom: 8px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .info-value { font-size: 14px; color: #fff; text-align: right; max-width: 60%; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal.active { display: block; }
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 15px;
+      padding: 25px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .modal-title {
+      font-size: 20px;
+      color: #c9a84c;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-group { margin-bottom: 15px; }
+    label {
+      display: block;
+      font-size: 13px;
+      color: #e0c97f;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Georgia', serif;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #c9a84c; }
+    select option { background: #1a1a1a; }
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .btn-save {
+      flex: 1;
+      padding: 14px;
+      background: linear-gradient(135deg, #c9a84c, #e0c97f);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: 14px;
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Georgia', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-logo">🎬 TALENT APP</div>
+    <div class="header-title">Προφίλ</div>
+    <button class="btn-logout" onclick="window.location.href='director-auth.html'">Έξοδος</button>
+  </div>
+
+  <div class="profile-hero">
+    <div class="avatar">🎬</div>
+    <div class="profile-name" id="display-name">Νίκος Παπαδόπουλος</div>
+    <div class="profile-username" id="display-username">@nikos_p</div>
+    <button class="btn-edit" onclick="openEdit()">✏️ Επεξεργασία</button>
+    <button class="btn-search" onclick="window.location.href='director-search.html'">🔍 Αναζήτηση Ηθοποιών</button>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <div class="section-title">Στοιχεία Επικοινωνίας</div>
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-value" id="display-email">nikos@email.com</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Κινητό</span>
+        <span class="info-value" id="display-phone">69XXXXXXXX</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Πόλη</span>
+        <span class="info-value" id="display-city">Αθήνα</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Επαγγελματικά</div>
+      <div class="info-row">
+        <span class="info-label">Χρόνια εμπειρίας</span>
+        <span class="info-value" id="display-years">10</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Παραγωγές</span>
+        <span class="info-value" id="display-productions">Αντιγόνη, Ο Βυσσινόκηπος</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Θέατρα</span>
+        <span class="info-value" id="display-theaters">Εθνικό Θέατρο</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Τι Ψάχνω</div>
+      <div class="info-row">
+        <span class="info-label">Τύπος ρόλου</span>
+        <span class="info-value" id="display-role">Πρωταγωνιστής/τρια</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Φύλο</span>
+        <span class="info-value" id="display-gender">Δεν έχει σημασία</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Ηλικία</span>
+        <span class="info-value" id="display-age">25 - 40</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <div class="modal-title">✏️ Επεξεργασία Προφίλ</div>
+      <div class="form-group">
+        <label>Όνομα & Επώνυμο</label>
+        <input type="text" id="edit-name" value="Νίκος Παπαδόπουλος">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="edit-email" value="nikos@email.com">
+      </div>
+      <div class="form-group">
+        <label>Κινητό</label>
+        <input type="tel" id="edit-phone" value="69XXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label>Πόλη</label>
+        <input type="text" id="edit-city" value="Αθήνα">
+      </div>
+      <div class="form-group">
+        <label>Χρόνια εμπειρίας</label>
+        <input type="number" id="edit-years" value="10">
+      </div>
+      <div class="form-group">
+        <label>Παραγωγές</label>
+        <textarea id="edit-productions">Αντιγόνη, Ο Βυσσινόκηπος</textarea>
+      </div>
+      <div class="form-group">
+        <label>Θέατρα</label>
+        <input type="text" id="edit-theaters" value="Εθνικό Θέατρο">
+      </div>
+      <div class="modal-buttons">
+        <button class="btn-cancel" onclick="closeEdit()">Ακύρωση</button>
+        <button class="btn-save" onclick="saveEdit()">Αποθήκευση</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openEdit() {
+      document.getElementById('editModal').classList.add('active');
+    }
+    function closeEdit() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+    function saveEdit() {
+      document.getElementById('display-name').textContent = document.getElementById('edit-name').value;
+      document.getElementById('display-email').textContent = document.getElementById('edit-email').value;
+      document.getElementById('display-phone').textContent = document.getElementById('edit-phone').value;
+      document.getElementById('display-city').textContent = document.getElementById('edit-city').value;
+      document.getElementById('display-years').textContent = document.getElementById('edit-years').value;
+      document.getElementById('display-productions').textContent = document.getElementById('edit-productions').value;
+      document.getElementById('display-theaters').textContent = document.getElementById('edit-theaters').value;
+      closeEdit();
+      alert('Το προφίλ σας αποθηκεύτηκε! ✅');
+    }
+  </script>
+
+</body>
+</html>
