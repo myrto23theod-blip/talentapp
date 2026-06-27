@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent App</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+      url('images/theater.jpg') center/cover no-repeat;
+      z-index: -1;
+    }
+    .curtain-left, .curtain-right {
+      position: fixed;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .curtain-left {
+      left: 0;
+      background: linear-gradient(to right, rgba(100,0,0,0.6), transparent);
+    }
+    .curtain-right {
+      right: 0;
+      background: linear-gradient(to left, rgba(100,0,0,0.6), transparent);
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .logo {
+      font-size: 18px;
+      color: #c9a84c;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 52px;
+      color: #ffffff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: #e0c97f;
+      margin-bottom: 60px;
+      font-style: italic;
+    }
+    .btn-start {
+      background: linear-gradient(135deg, #c9a84c, #e0c97f);
+      color: #1a1a1a;
+      border: none;
+      padding: 18px 60px;
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-start:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+  <div class="container">
+    <div class="logo">✦ Casting Platform ✦</div>
+    <h1>Talent App</h1>
+    <p class="subtitle">Η πλατφόρμα casting για το ελληνικό θέατρο</p>
+    <a href="choose-role.html" class="btn-start">ΕΝΑΡΞΗ</a>
+  </div>
+</body>
+</html>
