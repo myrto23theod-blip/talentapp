@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent App - Σύνδεση Σκηνοθέτη</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+      url('images/theater.jpg') center/cover fixed;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .curtain-left, .curtain-right {
+      position: fixed;
+      top: 0; width: 60px; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .curtain-left { left: 0; background: linear-gradient(to right, rgba(100,0,0,0.6), transparent); }
+    .curtain-right { right: 0; background: linear-gradient(to left, rgba(100,0,0,0.6), transparent); }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .logo {
+      font-size: 14px;
+      color: #c9a84c;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      color: #e0c97f;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-family: 'Georgia', serif;
+    }
+    input:focus {
+      outline: none;
+      border-color: #c9a84c;
+    }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #c9a84c, #e0c97f);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .forgot-link {
+      display: block;
+      margin-top: 15px;
+      color: #c9a84c;
+      font-size: 14px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .back-link:hover { color: #c9a84c; }
+  </style>
+</head>
+<body>
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+  <div class="container">
+    <div class="logo">🎬 TALENT APP</div>
+    <h1>Σύνδεση Σκηνοθέτη</h1>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" placeholder="Το username σας">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <button class="btn" onclick="login()">ΣΥΝΔΕΣΗ</button>
+    <a href="director-forgot.html" class="forgot-link">Ξέχασα τον κωδικό μου</a>
+    <a href="director-auth.html" class="back-link">← Πίσω</a>
+  </div>
+  <script>
+    function login() {
+      alert('Σύνδεση επιτυχής! Καλώς ήρθατε! 🎬');
+      window.location.href = 'director-profile.html';
+    }
+  </script>
+</body>
+</html>
