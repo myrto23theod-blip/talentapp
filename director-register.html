@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+html<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talent App - Εγγραφή Σκηνοθέτη</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+      url('images/theater.jpg') center/cover fixed;
+      color: #fff;
+      padding: 30px 20px;
+    }
+    .curtain-left, .curtain-right {
+      position: fixed;
+      top: 0; width: 60px; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .curtain-left { left: 0; background: linear-gradient(to right, rgba(100,0,0,0.6), transparent); }
+    .curtain-right { right: 0; background: linear-gradient(to left, rgba(100,0,0,0.6), transparent); }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .logo {
+      text-align: center;
+      font-size: 14px;
+      color: #c9a84c;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .section-title {
+      font-size: 14px;
+      color: #c9a84c;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 25px 0 12px;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 6px;
+    }
+    .form-group { margin-bottom: 15px; }
+    label {
+      display: block;
+      font-size: 13px;
+      color: #e0c97f;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-family: 'Georgia', serif;
+      transition: border 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #c9a84c;
+    }
+    select option { background: #1a1a1a; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 5px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 15px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #c9a84c, #e0c97f);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      letter-spacing: 2px;
+      margin-top: 25px;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .back-link:hover { color: #c9a84c; }
+  </style>
+</head>
+<body>
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+
+  <div class="form-container">
+    <div class="logo">🎬 TALENT APP</div>
+    <h1>Εγγραφή Σκηνοθέτη</h1>
+
+    <div class="section-title">Στοιχεία Λογαριασμού</div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Όνομα *</label>
+        <input type="text" placeholder="π.χ. Νίκος">
+      </div>
+      <div class="form-group">
+        <label>Επώνυμο *</label>
+        <input type="text" placeholder="π.χ. Παπαδόπουλος">
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Username *</label>
+        <input type="text" placeholder="π.χ. nikos_p">
+      </div>
+      <div class="form-group">
+        <label>Password * (έως 8 χαρακτήρες)</label>
+        <input type="password" maxlength="8" placeholder="••••••••">
+      </div>
+    </div>
+
+    <div class="section-title">Στοιχεία Επικοινωνίας</div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" placeholder="email@example.com">
+      </div>
+      <div class="form-group">
+        <label>Κινητό τηλέφωνο *</label>
+        <input type="tel" placeholder="69XXXXXXXX">
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Πόλη κατοικίας</label>
+        <input type="text" placeholder="π.χ. Αθήνα">
+      </div>
+      <div class="form-group">
+        <label>Περιοχή</label>
+        <input type="text" placeholder="π.χ. Κολωνάκι">
+      </div>
+    </div>
+
+    <div class="section-title">Επαγγελματικά Στοιχεία</div>
+    <div class="form-group">
+      <label>Χρόνια εμπειρίας στον χώρο</label>
+      <input type="number" placeholder="π.χ. 10">
+    </div>
+    <div class="form-group">
+      <label>Παραγωγές που έχετε σκηνοθετήσει</label>
+      <textarea rows="3" placeholder="π.χ. Αντιγόνη (2020), Ο Βυσσινόκηπος (2022)..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Θέατρα / Σκηνές που έχετε συνεργαστεί</label>
+      <textarea rows="2" placeholder="π.χ. Εθνικό Θέατρο, Θέατρο Τέχνης..."></textarea>
+    </div>
+
+    <div class="section-title">Τι Ψάχνετε</div>
+    <div class="form-group">
+      <label>Τύπος ηθοποιού που αναζητάτε</label>
+      <select>
+        <option value="">Επιλογή...</option>
+        <option>Πρωταγωνιστής/τρια</option>
+        <option>Δευτεραγωνιστής/τρια</option>
+        <option>Χαρακτήρας</option>
+        <option>Κομπάρσος</option>
+        <option>Όλα τα παραπάνω</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Περιγραφή ρόλου που ψάχνετε</label>
+      <textarea rows="3" placeholder="π.χ. Ψάχνω νέο ηθοποιό 25-35 ετών για πρωταγωνιστικό ρόλο σε σύγχρονο έργο..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Φύλο ηθοποιού</label>
+      <select>
+        <option value="">Επιλογή...</option>
+        <option>Άνδρας</option>
+        <option>Γυναίκα</option>
+        <option>Δεν έχει σημασία</option>
+      </select>
+    </div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Ηλικία από</label>
+        <input type="number" placeholder="π.χ. 20">
+      </div>
+      <div class="form-group">
+        <label>Ηλικία έως</label>
+        <input type="number" placeholder="π.χ. 40">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Απαραίτητη δραματική σχολή;</label>
+      <div class="radio-group">
+        <label><input type="radio" name="school" value="yes"> Ναι</label>
+        <label><input type="radio" name="school" value="no" checked> Όχι</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Επιπλέον πληροφορίες</label>
+      <textarea rows="3" placeholder="Οποιαδήποτε άλλη πληροφορία για την παραγωγή ή τις απαιτήσεις σας..."></textarea>
+    </div>
+
+    <button class="btn-submit" onclick="submitForm()">ΕΓΓΡΑΦΗ ✓</button>
+    <a href="director-auth.html" class="back-link">← Πίσω</a>
+  </div>
+
+  <script>
+    function submitForm() {
+      alert('Η εγγραφή σας ολοκληρώθηκε! Καλώς ήρθατε στο Talent App! 🎬');
+      window.location.href = 'director-profile.html';
+    }
+  </script>
+</body>
+</html>
